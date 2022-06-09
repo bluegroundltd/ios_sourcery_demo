@@ -1,0 +1,18 @@
+# READ MORE ABOUT configuration here https://merowing.info/Sourcery/usage.html
+configurations:
+    # -- Blueground configuration --
+    - sources:
+        include:
+          - FooApp
+          - Sourcery # We need to read the FixturableCommonExamples.swift
+      templates:
+        - Sourcery
+      output:
+          path: FooAppTests/Sourcery
+          link:
+            project: ./FooApp.xcodeproj
+            target: FooAppTests
+            group: FooAppTests/Sourcery
+      args:
+        testableImport: "FooApp" # [MANDATORY] Your mocks will have "@testable import <testableImport>"
+        containedPathSubstringToApplyTemplate: "/FooApp/" # [MANDATORY] If a protocol with Automockable annotation exists but it's path doesn't contain <focusFolder> it will be ignored.
